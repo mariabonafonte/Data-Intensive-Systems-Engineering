@@ -18,5 +18,5 @@ Software Engineering student at the University of Málaga.
 
 ⸻
 
-This repository is maintained as part of the Advanced Programming II coursework.
+This repository is maintained as part of the Data-Intensive Systems Engineering coursework.
 
