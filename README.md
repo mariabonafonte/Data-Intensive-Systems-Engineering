@@ -14,13 +14,13 @@ Repository containing my projects and coursework for Data-Intensive Systems Engi
 
 The repository contains the different assignments developed throughout the course.
 
-* #### Redis run on Terminal
+#### Redis run on Terminal
 * 📁 [Tienda Online](./Redis_Terminal/TiendaOnline.txt)
-#### LAB 1 — Biblioteca Digital: 📁 [BibliotecaDigital.txt](./Redis_Terminal/BibliotecaDigital.txt)
+* #### LAB 1 — Biblioteca Digital: 📁 [BibliotecaDigital.txt](./Redis_Terminal/BibliotecaDigital.txt)
   
-* #### Redis run with Python
+#### Redis run with Python
 * 📁 [Redis Tutorial](./Redis_Python/tutorial-redis.py)
-#### LAB 2 — Clasificación Deportiva: 📁 [ClasificacionDeportiva.py](./Redis_Python/ClasificacionDeportiva.py)
+* #### LAB 2 — Clasificación Deportiva: 📁 [ClasificacionDeportiva.py](./Redis_Python/ClasificacionDeportiva.py)
 
 ### 👩‍💻 Author
 
