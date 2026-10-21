@@ -1,0 +1,584 @@
+============================================================
+  ENTORNO OPERATIVO - Ingeniería de Sistemas Intensivos en Datos
+============================================================
+
+test> use DBPractica3
+switched to db DBPractica3
+DBPractica3> db.clientes.insertMany([{
+|     nombre: "Ana García",
+|     email: "ana.garcia@email.com",
+|     edad: 28,
+|     direccion: {
+|       calle: "Calle Mayor 123",
+|       ciudad: "Málaga",
+|       codigo_postal: "28013"
+|     },
+|     pedidos_realizados: 5,
+|     premium: true
+|   },
+|   {
+|     nombre: "Carlos López",
+|     email: "carlos.lopez@empresa.com",
+|     edad: 35,
+|     direccion: {
+|       calle: "Avenida Diagonal 456",
+|       ciudad: "Sevilla",
+|       codigo_postal: "08008"
+|     },
+|     pedidos_realizados: 2,
+|     premium: false
+|   },
+|   {
+|     nombre: "María Rodríguez",
+|     email: "maria.rodriguez@corp.com",
+|     edad: 42,
+|     direccion: {
+|       calle: "Calle Larios, 79",
+|       ciudad: "Málaga",
+|       codigo_postal: "28014"
+|     },
+|     pedidos_realizados: 2,
+|     premium: false
+|   }]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6ad87f849a69a958c40e5937'),
+    '1': ObjectId('6ad87f849a69a958c40e5938'),
+    '2': ObjectId('6ad87f849a69a958c40e5939')
+  }
+}
+DBPractica3> db.productos.insertMany([{
+|     nombre: "Laptop Gaming",
+|     precio: 1200,
+|     categoria: "tecnologia",
+|     stock: 15,
+|     especificaciones: {
+|       marca: "ASUS",
+|       ram: "16GB",
+|       almacenamiento: "512GB SSD"
+|     },
+|     tags: ["gaming", "portatil", "tecnologia"],
+|     activo: true
+|   },
+|   {
+|     nombre: "Smartphone Android",
+|     precio: 599,
+|     categoria: "tecnologia",
+|     stock: 30,
+|     especificaciones: {
+|       marca: "Samsung",
+|       ram: "8GB",
+|       almacenamiento: "128GB"
+|     },
+|     tags: ["movil", "android", "tecnologia"],
+|     activo: true
+|   },
+|   {
+|     nombre: "Auriculares Bluetooth",
+|     precio: 89,
+|     categoria: "audio",
+|     stock: 0,
+|     especificaciones: {
+|       marca: "Sony",
+|       tipo: "In-ear",
+|       bateria: "20h"
+|     },
+|     tags: ["audio", "inalambrico"],
+|     activo: false
+|   },
+|   {
+|     nombre: "Tablet Digital",
+|     precio: 349,
+|     categoria: "tecnologia",
+|     stock: 25,
+|     especificaciones: {
+|       marca: "Apple",
+|       pantalla: "10.9\"",
+|       almacenamiento: "64GB"
+|     },
+|     tags: ["tablet", "apple", "tecnologia"],
+|     activo: true
+|   },
+|   {
+|     nombre: "Cable USB",
+|     precio: 2,
+|     categoria: "cable",
+|     stock: 30,
+|     descuento:20,
+|     tags: ["cable","usb"],
+|     activo: true
+|   }]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6ad87fb99a69a958c40e593a'),
+    '1': ObjectId('6ad87fb99a69a958c40e593b'),
+    '2': ObjectId('6ad87fb99a69a958c40e593c'),
+    '3': ObjectId('6ad87fb99a69a958c40e593d'),
+    '4': ObjectId('6ad87fb99a69a958c40e593e')
+  }
+}
+DBPractica3> db.productos.find()
+[
+  {
+    _id: ObjectId('6ad87fb99a69a958c40e593a'),
+    nombre: 'Laptop Gaming',
+    precio: 1200,
+    categoria: 'tecnologia',
+    stock: 15,
+    especificaciones: { marca: 'ASUS', ram: '16GB', almacenamiento: '512GB SSD' },
+    tags: [ 'gaming', 'portatil', 'tecnologia' ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6ad87fb99a69a958c40e593b'),
+    nombre: 'Smartphone Android',
+    precio: 599,
+    categoria: 'tecnologia',
+    stock: 30,
+    especificaciones: { marca: 'Samsung', ram: '8GB', almacenamiento: '128GB' },
+    tags: [ 'movil', 'android', 'tecnologia' ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6ad87fb99a69a958c40e593c'),
+    nombre: 'Auriculares Bluetooth',
+    precio: 89,
+    categoria: 'audio',
+    stock: 0,
+    especificaciones: { marca: 'Sony', tipo: 'In-ear', bateria: '20h' },
+    tags: [ 'audio', 'inalambrico' ],
+    activo: false
+  },
+  {
+    _id: ObjectId('6ad87fb99a69a958c40e593d'),
+    nombre: 'Tablet Digital',
+    precio: 349,
+    categoria: 'tecnologia',
+    stock: 25,
+    especificaciones: { marca: 'Apple', pantalla: '10.9"', almacenamiento: '64GB' },
+    tags: [ 'tablet', 'apple', 'tecnologia' ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6ad87fb99a69a958c40e593e'),
+    nombre: 'Cable USB',
+    precio: 2,
+    categoria: 'cable',
+    stock: 30,
+    descuento: 20,
+    tags: [ 'cable', 'usb' ],
+    activo: true
+  }
+]
+
+DBPractica3> db.productos.find({categoria: "tecnologia"})
+[
+  {
+    _id: ObjectId('6ad87fb99a69a958c40e593a'),
+    nombre: 'Laptop Gaming',
+    precio: 1200,
+    categoria: 'tecnologia',
+    stock: 15,
+    especificaciones: { marca: 'ASUS', ram: '16GB', almacenamiento: '512GB SSD' },
+    tags: [ 'gaming', 'portatil', 'tecnologia' ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6ad87fb99a69a958c40e593b'),
+    nombre: 'Smartphone Android',
+    precio: 599,
+    categoria: 'tecnologia',
+    stock: 30,
+    especificaciones: { marca: 'Samsung', ram: '8GB', almacenamiento: '128GB' },
+    tags: [ 'movil', 'android', 'tecnologia' ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6ad87fb99a69a958c40e593d'),
+    nombre: 'Tablet Digital',
+    precio: 349,
+    categoria: 'tecnologia',
+    stock: 25,
+    especificaciones: { marca: 'Apple', pantalla: '10.9"', almacenamiento: '64GB' },
+    tags: [ 'tablet', 'apple', 'tecnologia' ],
+    activo: true
+  }
+]
+DBPractica3> db.productos.find({stock: {$gt:20}})
+[
+  {
+    _id: ObjectId('6ad87fb99a69a958c40e593b'),
+    nombre: 'Smartphone Android',
+    precio: 599,
+    categoria: 'tecnologia',
+    stock: 30,
+    especificaciones: { marca: 'Samsung', ram: '8GB', almacenamiento: '128GB' },
+    tags: [ 'movil', 'android', 'tecnologia' ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6ad87fb99a69a958c40e593d'),
+    nombre: 'Tablet Digital',
+    precio: 349,
+    categoria: 'tecnologia',
+    stock: 25,
+    especificaciones: { marca: 'Apple', pantalla: '10.9"', almacenamiento: '64GB' },
+    tags: [ 'tablet', 'apple', 'tecnologia' ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6ad87fb99a69a958c40e593e'),
+    nombre: 'Cable USB',
+    precio: 2,
+    categoria: 'cable',
+    stock: 30,
+    descuento: 20,
+    tags: [ 'cable', 'usb' ],
+    activo: true
+  }
+]
+
+DBPractica3> db.productos.find({"especificaciones.marca": "Apple"})
+[
+  {
+    _id: ObjectId('6ad87fb99a69a958c40e593d'),
+    nombre: 'Tablet Digital',
+    precio: 349,
+    categoria: 'tecnologia',
+    stock: 25,
+    especificaciones: { marca: 'Apple', pantalla: '10.9"', almacenamiento: '64GB' },
+    tags: [ 'tablet', 'apple', 'tecnologia' ],
+    activo: true
+  }
+]
+DBPractica3> db.clientes.find({"direccion.ciudad": "Málaga"})
+[
+  {
+    _id: ObjectId('6ad87f849a69a958c40e5937'),
+    nombre: 'Ana García',
+    email: 'ana.garcia@email.com',
+    edad: 28,
+    direccion: { calle: 'Calle Mayor 123', ciudad: 'Málaga', codigo_postal: '28013' },
+    pedidos_realizados: 5,
+    premium: true
+  },
+  {
+    _id: ObjectId('6ad87f849a69a958c40e5939'),
+    nombre: 'María Rodríguez',
+    email: 'maria.rodriguez@corp.com',
+    edad: 42,
+    direccion: { calle: 'Calle Larios, 79', ciudad: 'Málaga', codigo_postal: '28014' },
+    pedidos_realizados: 2,
+    premium: false
+  }
+]
+
+DBPractica3> db.clientes.find({"direccion.ciudad": "Sevilla"}, {_id:0, direccion:1})
+[
+  {
+    direccion: {
+      calle: 'Avenida Diagonal 456',
+      ciudad: 'Sevilla',
+      codigo_postal: '08008'
+    }
+  }
+]
+DBPractica3> db.productos.find({tags: "tecnologia"})
+[
+  {
+    _id: ObjectId('6ad87fb99a69a958c40e593a'),
+    nombre: 'Laptop Gaming',
+    precio: 1200,
+    categoria: 'tecnologia',
+    stock: 15,
+    especificaciones: { marca: 'ASUS', ram: '16GB', almacenamiento: '512GB SSD' },
+    tags: [ 'gaming', 'portatil', 'tecnologia' ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6ad87fb99a69a958c40e593b'),
+    nombre: 'Smartphone Android',
+    precio: 599,
+    categoria: 'tecnologia',
+    stock: 30,
+    especificaciones: { marca: 'Samsung', ram: '8GB', almacenamiento: '128GB' },
+    tags: [ 'movil', 'android', 'tecnologia' ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6ad87fb99a69a958c40e593d'),
+    nombre: 'Tablet Digital',
+    precio: 349,
+    categoria: 'tecnologia',
+    stock: 25,
+    especificaciones: { marca: 'Apple', pantalla: '10.9"', almacenamiento: '64GB' },
+    tags: [ 'tablet', 'apple', 'tecnologia' ],
+    activo: true
+  }
+]
+DBPractica3> db.productos.find({tags: "gaming"})
+[
+  {
+    _id: ObjectId('6ad87fb99a69a958c40e593a'),
+    nombre: 'Laptop Gaming',
+    precio: 1200,
+    categoria: 'tecnologia',
+    stock: 15,
+    especificaciones: { marca: 'ASUS', ram: '16GB', almacenamiento: '512GB SSD' },
+    tags: [ 'gaming', 'portatil', 'tecnologia' ],
+    activo: true
+  }
+]
+
+DBPractica3> db.productos.find({categoria: "tecnologia", stock: {$gt:0}})
+[
+  {
+    _id: ObjectId('6ad87fb99a69a958c40e593a'),
+    nombre: 'Laptop Gaming',
+    precio: 1200,
+    categoria: 'tecnologia',
+    stock: 15,
+    especificaciones: { marca: 'ASUS', ram: '16GB', almacenamiento: '512GB SSD' },
+    tags: [ 'gaming', 'portatil', 'tecnologia' ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6ad87fb99a69a958c40e593b'),
+    nombre: 'Smartphone Android',
+    precio: 599,
+    categoria: 'tecnologia',
+    stock: 30,
+    especificaciones: { marca: 'Samsung', ram: '8GB', almacenamiento: '128GB' },
+    tags: [ 'movil', 'android', 'tecnologia' ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6ad87fb99a69a958c40e593d'),
+    nombre: 'Tablet Digital',
+    precio: 349,
+    categoria: 'tecnologia',
+    stock: 25,
+    especificaciones: { marca: 'Apple', pantalla: '10.9"', almacenamiento: '64GB' },
+    tags: [ 'tablet', 'apple', 'tecnologia' ],
+    activo: true
+  }
+]
+DBPractica3> db.clientes.find({$or:[{premium : true}, {"direccion.ciudad": "Sevilla"}]})
+[
+  {
+    _id: ObjectId('6ad87f849a69a958c40e5937'),
+    nombre: 'Ana García',
+    email: 'ana.garcia@email.com',
+    edad: 28,
+    direccion: { calle: 'Calle Mayor 123', ciudad: 'Málaga', codigo_postal: '28013' },
+    pedidos_realizados: 5,
+    premium: true
+  },
+  {
+    _id: ObjectId('6ad87f849a69a958c40e5938'),
+    nombre: 'Carlos López',
+    email: 'carlos.lopez@empresa.com',
+    edad: 35,
+    direccion: {
+      calle: 'Avenida Diagonal 456',
+      ciudad: 'Sevilla',
+      codigo_postal: '08008'
+    },
+    pedidos_realizados: 2,
+    premium: false
+  }
+]
+DBPractica3> db.productos.find({"especificaciones": {$exists:true}})
+[
+  {
+    _id: ObjectId('6ad87fb99a69a958c40e593a'),
+    nombre: 'Laptop Gaming',
+    precio: 1200,
+    categoria: 'tecnologia',
+    stock: 15,
+    especificaciones: { marca: 'ASUS', ram: '16GB', almacenamiento: '512GB SSD' },
+    tags: [ 'gaming', 'portatil', 'tecnologia' ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6ad87fb99a69a958c40e593b'),
+    nombre: 'Smartphone Android',
+    precio: 599,
+    categoria: 'tecnologia',
+    stock: 30,
+    especificaciones: { marca: 'Samsung', ram: '8GB', almacenamiento: '128GB' },
+    tags: [ 'movil', 'android', 'tecnologia' ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6ad87fb99a69a958c40e593c'),
+    nombre: 'Auriculares Bluetooth',
+    precio: 89,
+    categoria: 'audio',
+    stock: 0,
+    especificaciones: { marca: 'Sony', tipo: 'In-ear', bateria: '20h' },
+    tags: [ 'audio', 'inalambrico' ],
+    activo: false
+  },
+  {
+    _id: ObjectId('6ad87fb99a69a958c40e593d'),
+    nombre: 'Tablet Digital',
+    precio: 349,
+    categoria: 'tecnologia',
+    stock: 25,
+    especificaciones: { marca: 'Apple', pantalla: '10.9"', almacenamiento: '64GB' },
+    tags: [ 'tablet', 'apple', 'tecnologia' ],
+    activo: true
+  }
+]
+
+DBPractica3> db.clientes.find({"edad": {$type: "int"}})
+[
+  {
+    _id: ObjectId('6ad87f849a69a958c40e5937'),
+    nombre: 'Ana García',
+    email: 'ana.garcia@email.com',
+    edad: 28,
+    direccion: { calle: 'Calle Mayor 123', ciudad: 'Málaga', codigo_postal: '28013' },
+    pedidos_realizados: 5,
+    premium: true
+  },
+  {
+    _id: ObjectId('6ad87f849a69a958c40e5938'),
+    nombre: 'Carlos López',
+    email: 'carlos.lopez@empresa.com',
+    edad: 35,
+    direccion: {
+      calle: 'Avenida Diagonal 456',
+      ciudad: 'Sevilla',
+      codigo_postal: '08008'
+    },
+    pedidos_realizados: 2,
+    premium: false
+  },
+  {
+    _id: ObjectId('6ad87f849a69a958c40e5939'),
+    nombre: 'María Rodríguez',
+    email: 'maria.rodriguez@corp.com',
+    edad: 42,
+    direccion: { calle: 'Calle Larios, 79', ciudad: 'Málaga', codigo_postal: '28014' },
+    pedidos_realizados: 2,
+    premium: false
+  }
+]
+DBPractica3> db.productos.find({"descuento": {$exists:false}})
+[
+  {
+    _id: ObjectId('6ad87fb99a69a958c40e593a'),
+    nombre: 'Laptop Gaming',
+    precio: 1200,
+    categoria: 'tecnologia',
+    stock: 15,
+    especificaciones: { marca: 'ASUS', ram: '16GB', almacenamiento: '512GB SSD' },
+    tags: [ 'gaming', 'portatil', 'tecnologia' ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6ad87fb99a69a958c40e593b'),
+    nombre: 'Smartphone Android',
+    precio: 599,
+    categoria: 'tecnologia',
+    stock: 30,
+    especificaciones: { marca: 'Samsung', ram: '8GB', almacenamiento: '128GB' },
+    tags: [ 'movil', 'android', 'tecnologia' ],
+    activo: true
+  },
+  {
+    _id: ObjectId('6ad87fb99a69a958c40e593c'),
+    nombre: 'Auriculares Bluetooth',
+    precio: 89,
+    categoria: 'audio',
+    stock: 0,
+    especificaciones: { marca: 'Sony', tipo: 'In-ear', bateria: '20h' },
+    tags: [ 'audio', 'inalambrico' ],
+    activo: false
+  },
+  {
+    _id: ObjectId('6ad87fb99a69a958c40e593d'),
+    nombre: 'Tablet Digital',
+    precio: 349,
+    categoria: 'tecnologia',
+    stock: 25,
+    especificaciones: { marca: 'Apple', pantalla: '10.9"', almacenamiento: '64GB' },
+    tags: [ 'tablet', 'apple', 'tecnologia' ],
+    activo: true
+  }
+]
+DBPractica3> db.productos.updateOne({nombre: "Auriculares Bluetooth"}, {$set: {precio:79}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+DBPractica3> db.productos.updateOne({nombre: "Laptop Gaming"}, {$set: {stock:18}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+DBPractica3> db.productos.updateMany({categoria: "tecnologia"}, {$set: {descuento:10}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 3,
+  modifiedCount: 3,
+  upsertedCount: 0
+}
+
+DBPractica3> db.productos.updateMany({},{$inc: {stock:5}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 5,
+  modifiedCount: 5,
+  upsertedCount: 0
+}
+
+DBPractica3> db.productos.updateMany({precio:{$gt:100}},{$set: {envio_gratis:true}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 3,
+  modifiedCount: 3,
+  upsertedCount: 0
+}
+
+DBPractica3> db.productos.updateOne({nombre: "Monitor 24"}, {$set: {precio:199 , stock:10}},{upsert:true})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6ad886ed053a09eea64600bb'),
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 1
+}
+DBPractica3> db.productos.updateOne({nombre: "Smartphone iPhone"}, {$set: {precio:900}, $setOnInsert: {stock:25}}, {upsert:true})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6ad887b5053a09eea64600bc'),
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 1
+}
+DBPractica3> db.productos.updateOne({nombre: "Smartphone Android"}, {$push: {tags: "5G"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+DBPractica3> db.productos.deleteOne({nombre: "Cable USB"})
+{ acknowledged: true, deletedCount: 1 }
+DBPractica3>
