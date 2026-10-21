@@ -16,11 +16,17 @@ The repository contains the different assignments developed throughout the cours
 
 #### Redis run on Terminal
 * 📁 [Tienda Online](./Redis_Terminal/TiendaOnline.txt)
-* #### LAB 1 — Biblioteca Digital: 📁 [BibliotecaDigital.txt](./Redis_Terminal/BibliotecaDigital.txt)
+* #### LAB 1 — Digital Library: 📁 [BibliotecaDigital.txt](./Redis_Terminal/BibliotecaDigital.txt)
   
 #### Redis run with Python
 * 📁 [Redis Tutorial](./Redis_Python/tutorial-redis.py)
-* #### LAB 2 — Clasificación Deportiva: 📁 [ClasificacionDeportiva.py](./Redis_Python/ClasificacionDeportiva.py)
+* #### LAB 2 — Sport Clasification: 📁 [ClasificacionDeportiva.py](./Redis_Python/ClasificacionDeportiva.py)
+
+#### MongoDB run on Terminal
+* #### LAB 3 — Products and Clients: 📁 [Clientes_Productos_Mongo.txt](./Redis_Terminal/Clientes_Productos_Mongo.txt)
+
+
+Technologies used on this course: Redis, MongoDB, Python. 
 
 ### 👩‍💻 Author
 
