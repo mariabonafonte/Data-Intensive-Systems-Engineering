@@ -15,12 +15,12 @@ Repository containing my projects and coursework for Data-Intensive Systems Engi
 The repository contains the different assignments developed throughout the course.
 
 #### Redis run on Terminal
-* 📁 [Tienda Online](./Redis_Terminal/TiendaOnline.txt)
+* 📁 [Online Store](./Redis_Terminal/TiendaOnline.txt)
 * #### LAB 1 — Digital Library: 📁 [BibliotecaDigital.txt](./Redis_Terminal/BibliotecaDigital.txt)
   
 #### Redis run with Python
 * 📁 [Redis Tutorial](./Redis_Python/tutorial-redis.py)
-* #### LAB 2 — Sport Clasification: 📁 [ClasificacionDeportiva.py](./Redis_Python/ClasificacionDeportiva.py)
+* #### LAB 2 — Sports Classification: 📁 [ClasificacionDeportiva.py](./Redis_Python/ClasificacionDeportiva.py)
 
 #### MongoDB run on Terminal
 * #### LAB 3 — Products and Clients: 📁 [Clientes_Productos_Mongo.txt](./Redis_Terminal/Clientes_Productos_Mongo.txt)
