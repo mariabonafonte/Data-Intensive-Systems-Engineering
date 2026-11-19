@@ -1,0 +1,11 @@
+id_cargador,nombre,zona,tipo,potencia_kw,precio_kwh
+C01,Plaza de la Marina,Centro,rapido,50,0.49
+C02,Alameda,Centro,normal,22,0.32
+C03,Muelle Uno,Litoral,rapido,50,0.49
+C04,La Malagueta,Litoral,normal,22,0.32
+C05,Teatinos Campus,Teatinos,rapido,50,0.49
+C06,Teatinos Biblioteca,Teatinos,normal,22,0.32
+C07,El Palo,Este,normal,22,0.32
+C08,Pedregalejo,Este,rapido,50,0.49
+C09,Martiricos,Centro,normal,22,0.32
+C10,Huelin,Litoral,normal,22,0.32
