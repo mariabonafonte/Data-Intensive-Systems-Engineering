@@ -1,0 +1,13 @@
+id_producto,nombre,categoria,precio
+P01,Zapatillas trail,running,119.9
+P02,Zapatillas asfalto,running,99.9
+P03,Camiseta técnica,running,24.9
+P04,Reloj GPS,running,249.0
+P05,Casco carretera,ciclismo,79.9
+P06,Culotte,ciclismo,49.9
+P07,Luces LED,ciclismo,19.9
+P08,Gafas natación,natacion,14.9
+P09,Bañador,natacion,34.9
+P10,Gorro silicona,natacion,9.9
+P11,Mochila montaña,montaña,69.9
+P12,Bastones trekking,montaña,39.9
