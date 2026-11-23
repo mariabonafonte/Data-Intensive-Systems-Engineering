@@ -1,0 +1,21 @@
+id_libro,titulo,autor,genero,anio_publicacion,paginas
+L001,Don Quijote de la Mancha,Miguel de Cervantes,Novela,1605,1376
+L002,La Regenta,Leopoldo Alas Clarín,Novela,1885,960
+L003,Niebla,Miguel de Unamuno,Novela,1914,304
+L004,Campos de Castilla,Antonio Machado,Poesía,1912,216
+L005,Poeta en Nueva York,Federico García Lorca,Poesía,1940,240
+L006,Bodas de sangre,Federico García Lorca,Teatro,1933,128
+L007,La casa de Bernarda Alba,Federico García Lorca,Teatro,1945,120
+L008,Luces de bohemia,Ramón del Valle-Inclán,Teatro,1924,
+L009,Nada,Carmen Laforet,Novela,1945,288
+L010,La colmena,Camilo José Cela,Novela,1951,416
+L011,Cien años de soledad,Gabriel García Márquez,Novela,1967,496
+L012,Rayuela,Julio Cortázar,Novela,1963,736
+L013,Ficciones,Jorge Luis Borges,Novela,1944,224
+L014,El árbol de la ciencia,Pío Baroja,Novela,1911,
+L015,Python para todos,Raúl González Duque,Informática,2008,160
+L016,Fundamentos de bases de datos,Abraham Silberschatz,Informática,2014,1376
+L017,Big Data con Hadoop,Tom White,Informática,2015,756
+L018,Breve historia del tiempo,Stephen Hawking,Ensayo,1988,256
+L019,El origen de las especies,Charles Darwin,Ensayo,1859,592
+L020,Aprendiendo Spark,Holden Karau,Informática,2015,274
