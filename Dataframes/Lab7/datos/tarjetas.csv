@@ -1,0 +1,51 @@
+id_tarjeta,tipo_tarjeta,descuento,distrito
+T001,general,0,Carretera de Cádiz
+T002,general,0,Teatinos
+T003,general,0,Este
+T004,general,0,Teatinos
+T005,general,0,Teatinos
+T006,general,0,Centro
+T007,general,0,Carretera de Cádiz
+T008,general,0,Teatinos
+T009,general,0,Cruz de Humilladero
+T010,general,0,Centro
+T011,general,0,Este
+T012,general,0,Teatinos
+T013,general,0,Teatinos
+T014,general,0,Teatinos
+T015,general,0,Carretera de Cádiz
+T016,general,0,Este
+T017,general,0,Este
+T018,general,0,Centro
+T019,general,0,Carretera de Cádiz
+T020,general,0,Teatinos
+T021,general,0,Centro
+T022,general,0,Cruz de Humilladero
+T023,general,0,Carretera de Cádiz
+T024,general,0,Este
+T025,general,0,Cruz de Humilladero
+T026,estudiante,50,Centro
+T027,estudiante,50,Centro
+T028,estudiante,50,Cruz de Humilladero
+T029,estudiante,50,Cruz de Humilladero
+T030,estudiante,50,Cruz de Humilladero
+T031,estudiante,50,Centro
+T032,estudiante,50,Teatinos
+T033,estudiante,50,Carretera de Cádiz
+T034,estudiante,50,Centro
+T035,estudiante,50,Teatinos
+T036,estudiante,50,Cruz de Humilladero
+T037,estudiante,50,Cruz de Humilladero
+T038,estudiante,50,Carretera de Cádiz
+T039,estudiante,50,Este
+T040,estudiante,50,Carretera de Cádiz
+T041,jubilado,70,Cruz de Humilladero
+T042,jubilado,70,Teatinos
+T043,jubilado,70,Cruz de Humilladero
+T044,jubilado,70,Este
+T045,jubilado,70,Centro
+T046,jubilado,70,Este
+T047,jubilado,70,Centro
+T048,jubilado,70,Este
+T049,jubilado,70,Carretera de Cádiz
+T050,jubilado,70,Cruz de Humilladero

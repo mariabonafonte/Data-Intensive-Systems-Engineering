@@ -1,0 +1,11 @@
+id_linea,numero,recorrido,tipo_linea,tarifa
+L01,1,Parque del Sur - Alameda,urbana,1.4
+L02,3,El Palo - Puerta Blanca,urbana,1.4
+L03,11,El Palo - Alameda,urbana,1.4
+L04,14,Alameda - Carranque,urbana,1.4
+L05,16,Alameda - Teatinos,urbana,1.4
+L06,20,Alameda - Campanillas,urbana,1.4
+L07,C1,Circular 1,circular,1.4
+L08,C2,Circular 2,circular,1.4
+L09,A,Aeropuerto - Alameda,especial,4.0
+L10,N1,Nocturno Alameda - El Palo,nocturna,1.4
