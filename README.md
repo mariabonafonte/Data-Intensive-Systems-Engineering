@@ -13,21 +13,24 @@ Repository containing my projects and coursework for Data-Intensive Systems Engi
 ### 📂 CourseWork
 
 The repository contains the different assignments developed throughout the course.
-
-#### Redis run on Terminal
+#### REDIS
+##### Redis run on Terminal
 * 📁 [Online Store](./Redis/Terminal/TiendaOnline.txt)
 * #### LAB 1 — Digital Library: 📁 [BibliotecaDigital.txt](./Redis/Terminal/BibliotecaDigital.txt)
   
-#### Redis run with Python
+##### Redis run with Python
 * 📁 [Redis Tutorial](./Redis/Python/tutorial-redis.py)
 * #### LAB 2 — Sports Classification: 📁 [ClasificacionDeportiva.py](./Redis/Python/ClasificacionDeportiva.py)
 
-#### MongoDB run on Terminal
+#### MONGODB
+##### MongoDB run on Terminal
 * #### LAB 3 — Products and Clients: 📁 [Clientes_Productos_Mongo.txt](./MongoDB/Clientes_Productos_Mongo.txt)
 * 
-#### MongoDB run on Python
+##### MongoDB run on Python
 * #### LAB 4 — TechWorld: 📁 [practica4.py](./MongoDB/practica4.py)
-
+* 
+#### DataFrames
+* #### LAB 4 — TechWorld: 📁 [practica4.py](./MongoDB/practica4.py)
 
 Technologies used on this course: Redis, MongoDB, Python. 
 
