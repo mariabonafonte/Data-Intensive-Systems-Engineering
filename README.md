@@ -30,7 +30,10 @@ The repository contains the different assignments developed throughout the cours
 * #### LAB 4 — TechWorld: 📁 [practica4.py](./MongoDB/practica4.py)
 * 
 #### DataFrames
-* #### LAB 4 — TechWorld: 📁 [practica4.py](./MongoDB/practica4.py)
+* #### Pandas Exercice: 📁 [EjercicioPandas](./DataFrames/Ejercicio%20Pandas)
+* #### Spark Exercice: 📁 [SparkInClass](./DataFrames/SparkInClass)
+* #### LAB 6 — DeporMalaga: 📁 [Lab6](./DataFrames/Lab6)
+* #### LAB 7 — EMT Malaga: 📁 [Lab7](./DataFrames/Lab7)
 
 Technologies used on this course: Redis, MongoDB, Python. 
 
