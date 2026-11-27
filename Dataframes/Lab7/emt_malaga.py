@@ -1,3 +1,5 @@
+#MARIA BONAFONTE SANCHEZ
+
 import pandas as pd 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -188,33 +190,251 @@ print(por_id.sort_values(by="retraso_min", ascending=False).head(5))# los 5 viaj
 #V0013    2026-01-03 08:05:00      L06       T041     8       10    11.400000    tarjeta   retrasado
 #V0180    2026-02-01 18:56:00      L05       T049    18        1    11.400000    tarjeta   retrasado
 
+#PARTE 4 · Consultas con y sin query
 
+#En 4.1 y 4.2 resuelve cada consulta de las dos formas: con una condición entre corchetes y con
+#4.1 Viajes pagados en efectivo. ¿Cuántos hay? 25
+efectivo = viajes[viajes.medio_pago == "efectivo"]
+efectivo_q = viajes.query("medio_pago == 'efectivo'")
+print(efectivo.shape, efectivo_q.shape) 
+
+#4.2 Viajes de la línea L03 de más de 10 paradas. 
+# Muestra solo su identificador, la tarjeta y las paradas.
+l03 = viajes[viajes.id_linea == "L03"]
+paradas = l03[l03.paradas > 10]
+l03_q = viajes.query("id_linea == 'L03'")
+paradas_q = l03_q.query("paradas > 10")
+print(paradas_q.loc[:, ["id_viaje", "id_tarjeta", "paradas"]])
+#fecha                 id_viaje id_tarjeta  paradas                                                                 
+#2026-01-03 11:00:00    V0014       T004       17
+#2026-01-05 22:41:00    V0033       T049       13
+#2026-01-08 07:30:00    V0045       T012       13
+#2026-01-09 15:07:00    V0052       T044       14
+#2026-01-13 16:10:00    V0073       T026       15
+#...
+#2026-02-26 18:26:00    V0309       T008       17
+
+#4.3 Con query: viajes con un retraso de más de 6 minutos en las líneas L01 o L05.
+#  Muestra el identificador, la línea, la hora y el retraso. ¿Cuántos son? 44
+linea_l01 = viajes.query("id_linea == 'L01'")
+linea_l05 = viajes.query("id_linea == 'L05'")
+l01_l05 = pd.concat([linea_l01,linea_l05])   
+retraso = l01_l05.query("retraso_min > 6")
+print(retraso.loc[:, ["id_viaje", "id_linea", "hora", "retraso_min"]])
+ #fecha              id_viaje id_linea  hora  retraso_min                                              
+#2026-01-01 13:03:00    V0003      L01    13     6.800000
+#2026-01-01 12:58:00    V0002      L05    12     7.500000
+#2026-01-01 13:44:00    V0004      L05    13     8.000000
+#2026-01-04 09:32:00    V0019      L05     9     9.500000
+#...
+#2026-02-28 22:11:00    V0320      L05    22     7.400000
+print(retraso.shape) #(44,8) => 44 viajes
+
+#4.4 ¿Cuántos viajes se hicieron con la tarjeta T999? 4
+t_999 = viajes.query("id_tarjeta == 'T999'")
+print(t_999.shape)
+
+# ¿Cuántos viajes son de la línea L11? 4
+l11 = viajes.query("id_linea == 'L11'")
+print(l11.shape)
 
 # PARTE 5 · Combinar tablas con merge (hecho en clase completo )
 #5.1 (En el examen no entra - muy complejo)
-#lineas = pd.read_csv("datos/lineas.csv")
-#tarjetas = pd.read_csv("datos/tarjetas.csv")
-#via = viajes.reset_index()
-#completo = pd.merge(via, lineas, on="id_linea",
-#                    how="left", indicator=True)
-#print("Completo:")
-#print(completo.head(10))
-#print("Número de viajes de líneas que no están en el catálogo")
-#print(completo("_merge").value_counts())
-#print("Lineas que no estan en el catálogo")
-#print(completo[completo["_merge"]=="left_only"].
-# loc[:,["id_viaje", "id_linea", "recorrido"]])
+lineas = pd.read_csv("datos/lineas.csv")
+tarjetas = pd.read_csv("datos/tarjetas.csv")
+via = viajes.reset_index()
+completo = pd.merge(via, lineas, on="id_linea",
+                    how="left", indicator=True)
+print("Completo:")
+print(completo.head(10))
+print("Número de viajes de líneas que no están en el catálogo")
+print(completo["_merge"].value_counts())
+print("Lineas que no estan en el catálogo")
+print(completo[completo["_merge"]=="left_only"].
+     loc[:,["id_viaje", "id_linea", "recorrido"]])
 
 #5.2 Añadir datos de la tarjeta e importe (mas tipico, mas sencillito)
-#completo = pd.merge(Completo,tarjetas, on="id_tarjeta", how="left")
-#print(completo.isnull().sum())
-#completo["tipo_tarjeta"] = completo["tipo_tarjeta"].fillna("turista")
-#completo["descuento"] = completo["descuento"].fillna(0)
-#completo["importe"] = completo["tarifa"]*(1-completo["descuento"])
-#completo = completo.set_index("fecha")
-#completo = completo.sort_index()
+completo = pd.merge(completo,tarjetas, on="id_tarjeta", how="left")
+print(completo.isnull().sum())
+completo["tipo_tarjeta"] = completo["tipo_tarjeta"].fillna("turista")
+completo["descuento"] = completo["descuento"].fillna(0)
+completo["importe"] = completo["tarifa"]*(1-completo["descuento"])
+completo = completo.set_index("fecha")
+completo = completo.sort_index()
 
 #5.3 (en el examen no cae nada de utilizar indicato, demasiado complejo)
 # (CAE PARECIDO AL 5.2: hacer merge y rellenar datos)
-#derecha = pd.merge(via, linea, on="id_linea", how="right", indicator=True)
-#print(derecha[derecha["_merge"] == "right_only"].loc[:, ["id_linea", "numero", "recorrido"]])
+derecha = pd.merge(via, lineas, on="id_linea", how="right", indicator=True)
+print(derecha[derecha["_merge"] == "right_only"].loc[:, ["id_linea", "numero", "recorrido"]])
+
+
+
+#PARTE 6 · Dividir, unir, agrupar y resumir
+#6.1 Divide completo en tres trozos(las 110 primeras, de la 110 a la 219 y el resto) y vuelve a unirlos. 
+
+
+trozos = [completo[:110], completo[110:219], completo[219:]]
+print(trozos[0].shape, trozos[1].shape, trozos[2].shape) #(110, 17) (109, 17) (101, 17)
+reunido = pd.concat(trozos)
+# Comprueba que el resultado tiene el mismo tamaño que completo. 
+print(reunido.shape == completo.shape)   #TRUE  
+
+# Divide después completo en los viajes de enero y los de febrero seleccionando por fechas, 
+# únelos y comprueba que suman todos los viajes.
+enero = completo.query("fecha >= '2026-01-01' and fecha < '2026-02-01'") #177
+febrero = completo.query("fecha >= '2026-02-01' and fecha < '2026-03-01'") #143
+por_mes = pd.concat([enero, febrero])
+print(enero.shape, febrero.shape, por_mes.shape)  #320
+
+
+#6.2 Calcula las paradas recorridas y el importe total por tipo de línea, 
+print(completo.loc[:, ["id_linea", "paradas", "importe"]].groupby("id_linea").sum())
+
+# id_linea  paradas  importe                id_linea  paradas  importe 
+#L01           382  -1426.6                 #L02           341  -1407.0
+#L03           503  -1656.2                 #L04           192   -586.6
+#L05           413  -1890.0                 #L06           257  -1316.0
+#L07           330  -1703.8                 #L08           314   -771.4
+#L09           196  -2240.0                 #L11            43      0.0
+
+# el importe total por tipo de línea y tipo de tarjeta, 
+print(completo.loc[:, ["id_linea", "tipo_tarjeta", "importe"]].groupby(["id_linea", "tipo_tarjeta"]).sum())
+# id_linea tipo_tarjeta  importe         
+#L01      estudiante     -686.0             L02      estudiante     -754.6          L07      estudiante     -754.6
+#         general          32.2                         general       23.8                   general          16.8
+#         jubilado       -772.8                        jubilado     -676.2                   jubilado       -966.0
+
+#L03      estudiante     -823.2             L04      estudiante     -411.6          L08      estudiante     -617.4
+#         general          35.0                      general          18.2                   general          37.8
+#         jubilado       -869.4                      jubilado       -193.2                   jubilado       -193.2
+#         turista           1.4                                                              turista           1.4
+
+#L05      estudiante     -960.4             L06      estudiante     -754.6          L09      estudiante    -1176.0
+#         general          35.0                      general          16.8                   general          40.0
+#         jubilado       -966.0                      jubilado       -579.6                   jubilado      -1104.0
+#         turista           1.4                      turista           1.4  
+
+#L11      estudiante        0.0
+#         general           0.0
+#         jubilado          0.0
+
+
+# y cuántos viajes hay de cada tipo de tarjeta.
+print(completo["tipo_tarjeta"].value_counts())
+#tipo_tarjeta: general: 166, estudiante:91, jubilado:59, turista:4
+
+
+#6.3 Escribe una función que clasifique según paradas: "corto" (<5), "medio" (5-11) o "largo" (>=12). 
+def trayecto(paradas):
+    if paradas <5: 
+        return "corto"
+    elif paradas < 11: 
+        return "medio"
+    else:
+        return "largo" 
+    
+# Aplícala para crear la columna trayecto y cuenta cuántos viajes hay de cada tipo.    
+completo["trayecto"] = completo["paradas"].apply(trayecto)
+print(completo["trayecto"].value_counts())  # largo 130, medio 119, corto 71
+
+#6.4 Calcula la media de las paradas, el retraso y el importe de todos los viajes. 
+print(completo.loc[:, ["paradas", "retraso_min", "importe"]].mean())
+#paradas: 9.284375, retraso_min: 5.413409, importe: -41.131646
+
+# Calcula también el retraso medio de los viajes de la hora punta de la mañana 
+hora_punta = completo.query("hora >= 7 and hora <= 9") # (de las 7 a las 9, ambas incluidas).
+print(hora_punta.loc[:, ["retraso_min"]].mean()) #retraso_min    5.244231
+
+#PARTE 7 · Consultas SQL con DataFrame
+#7.1 Consultas sobre una tabla.
+
+#a) SELECT numero, UPPER(recorrido) FROM lineas WHERE recorrido LIKE '%Alameda%' ORDER BY recorrido
+condicion_a = lineas["recorrido"].isin(["%Alameda%"])
+r_a = lineas.loc[condicion_a, ["numero", "recorrido"]].sort_values("recorrido")
+r_a["recorrido"] = r_a["recorrido"].str.upper()
+print(r_a)
+
+#b) SELECT id_viaje, TO_CHAR(fecha, 'DD/MM/YYYY') AS dia, hora, FLOOR(retraso_min) FROM viajes WHERE id_linea = 'L06' AND hora >= 17 AND hora <= 19
+r_b = viajes.query("id_linea == 'L06' and hora >= 17 and hora <= 19").loc[:, ["id_viaje", "hora", "retraso_min"]].copy()
+r_b["dia"] = r_b.index.strftime("%d/%m/%Y")
+r_b["retraso_min"] = np.floor(r_b["retraso_min"])
+print(r_b[["id_viaje","dia", "hora", "retraso_min"]])
+
+# fecha               id_viaje    dia       hora  retraso_min                                                    
+#2026-01-02 17:52:00    V0011  02/01/2026    17          5.0
+#2026-01-18 17:23:00    V0097  18/01/2026    17         11.0
+#2026-02-14 17:40:00    V0242  14/02/2026    17         11.0
+
+#c) SELECT * FROM tarjetas WHERE distrito = 'Centro' OR distrito = 'Este'
+r_c = tarjetas["distrito"].isin(['Centro', 'Este'])
+print(tarjetas.loc[r_c, :])
+#   id_tarjeta tipo_tarjeta  descuento distrito
+#2        T003      general          0     Este         30       T031   estudiante         50   Centro
+#5        T006      general          0   Centro         33       T034   estudiante         50   Centro
+#9        T010      general          0   Centro         38       T039   estudiante         50     Este
+#10       T011      general          0     Este         43       T044     jubilado         70     Este
+#15       T016      general          0     Este         44       T045     jubilado         70   Centro
+#16       T017      general          0     Este         45       T046     jubilado         70     Este
+#17       T018      general          0   Centro         46       T047     jubilado         70   Centro
+#20       T021      general          0   Centro         47       T048     jubilado         70     Este
+#23       T024      general          0     Este
+#25       T026   estudiante         50   Centro
+#26       T027   estudiante         50   Centro
+
+#d) SELECT id_linea, ROUND(AVG(retraso_min), 1) FROM viajes GROUP BY id_linea HAVING AVG(retraso_min) > 4
+r_d = viajes.groupby("id_linea")["retraso_min"].mean().reset_index().query("retraso_min > 4").round(1)
+print(r_d)
+#  id_linea  retraso_min
+#4      L05         17.3
+#5      L06          8.3
+#8      L09          4.9
+
+#e) SELECT COUNT(DISTINCT id_tarjeta) FROM viajes WHERE medio_pago = 'movil'
+r_e = viajes.query("medio_pago == 'movil'")["id_tarjeta"].nunique()
+print(r_e) #44
+
+#7.2 Consultas con varias tablas.
+#a) SELECT v.id_viaje, l.numero, v.retraso_min FROM viajes v JOIN lineas l ON v.id_linea = l.id_linea WHERE l.tipo_linea = 'circular' AND v.retraso_min > 3
+unidas_a = pd.merge(viajes, lineas, on="id_linea", how="inner")
+r_a2 = unidas_a.query("tipo_linea == 'circular'")
+r_a2 =r_a2.loc[:,["id_viaje", "numero", "retraso_min"]]
+print(r_a2)
+
+#    id_viaje numero  retraso_min
+#0      V0001     C2          4.5           293    V0297     C2          0.0
+#14     V0016     C1          0.0           295    V0299     C1          1.6
+#16     V0018     C2          0.5           301    V0305     C2          2.0
+#20     V0022     C2          2.2           306    V0310     C2          1.7
+#25     V0027     C1          1.4           308    V0312     C2          3.6
+#..       ...    ...          ...           [72 rows x 3 columns]
+
+#b) SELECT t.distrito, SUM(v.paradas)FROM viajes v JOIN tarjetas t ON v.id_tarjeta = t.id_tarjeta GROUP BY t.distrito
+unidas_b = pd.merge(viajes, tarjetas, on="id_tarjeta", how="inner")
+r_b2 = unidas_b.groupby("distrito")["paradas"].sum()
+print(r_b2)
+#DISTRITO: Carretera de Cádiz:405, Centro:610, Cruz de Humilladero:774, Este:486, Teatinos:660
+
+#c)SELECT l.tipo_linea, AVG(v.retraso_min) FROM viajes v JOIN lineas l ON v.id_linea = l.id_linea GROUP BY l.tipo_linea
+#unidas_c = unidas_a
+r_c2 = unidas_a.groupby("tipo_linea")["retraso_min"].mean()
+print(r_c2)
+#tipo_linea - circular: 1.861299, especial: 4.883333, urbana: 6.634423
+
+#d) SELECT recorrido FROM lineas l WHERE EXISTS (SELECT 1 FROM viajes v  WHERE v.id_linea = l.id_linea AND v.retraso_min >10)
+lineas_retraso_alto = viajes.query("retraso_min > 10")["id_linea"].unique()
+r_d2 = lineas.query("id_linea in @lineas_retraso_alto").loc[:, ["recorrido"]]
+print(r_d2)
+#               recorrido
+# 4     Alameda - Teatinos
+# 5  Alameda - Campanillas
+
+#e)SELECT id_tarjeta, tipo_tarjeta, distrito FROM tarjetas WHERE id_tarjeta NOT IN (SELECT id_tarjeta FROM viajes WHERE fecha >= '2026-02-01')
+viajes_fechas = viajes.reset_index()
+tarjetas_febrero = (viajes_fechas.query("fecha >= '2026-02-01'")["id_tarjeta"].dropna().unique())
+r_e2 = tarjetas.query("id_tarjeta not in @tarjetas_febrero").loc[:, ["id_tarjeta", "tipo_tarjeta", "distrito"]]
+print(r_e2)
+#   id_tarjeta tipo_tarjeta             distrito
+# 36       T037   estudiante  Cruz de Humilladero
+
+
+
